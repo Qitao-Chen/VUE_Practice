@@ -11,3 +11,5 @@ top-mid-bottom
  <input type="checkbox" class="select-all" @click="selectAll" v-model="Allchecked">
  //this part is the most important part. it's diff to teacher's idea.
  //also influence the autoAllSelect() method
+
+ also in the video 45:00, we can use the get and set methods to implement it
