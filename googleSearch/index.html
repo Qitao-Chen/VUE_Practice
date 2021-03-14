@@ -10,6 +10,55 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    
+    <div id="app">
+        <div class="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" title="click to view more" alt="">
+        </div>
+        <div class="search-box">
+            <span class="search-area">
+                <input type="text" maxlength="100" v-model="inputVal" @focus="() => isShow = true" @blur="() => isShow = false">
+                <span class="icon icon-paizhao"></span>
+            </span>
+            
+            <span class="search-btn">Google Search</span>
+        </div>
+        <ul class="search-list"
+        v-show="isShow && resultList.length" 
+        >
+            <li
+            v-for="item in resultList"
+            :key="item"
+            >{{ item }}</li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                isShow:false,
+                inputVal: '',
+                resultList:[],
+            },
+            methods:{
+                searchResult(res){
+                    this.resultList = res.s;
+                    console.log(this.resultList)
+                }
+            },
+            watch:{
+                inputVal(){
+                    $.ajax({
+                        dataType:'jsonp',
+                        url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                        data:{
+                            wd:this.inputVal,
+
+                            cb:'vm.searchResult'
+                        }
+                    })
+                }
+            }
+        })
+    </script>
 </body>
 </html>
