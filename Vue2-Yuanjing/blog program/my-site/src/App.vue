@@ -1,17 +1,20 @@
 <template>
   <div id="app">
+    <profile name="RUNJIE SUN" link="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/512px-LEGO_logo.svg.png"/>
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Amy Welcome to Your Vue.js App"
+    say="I want say That this is the first step of Vue Odyssey"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import profile from './components/profile.vue'
 export default {
-  name: 'App',
+  name: 'Appl',
   components: {
-    HelloWorld
+    HelloWorld,
+    profile
   }
 }
 </script>
