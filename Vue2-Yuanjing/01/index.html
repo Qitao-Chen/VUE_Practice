@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <style>
+        * {
+            list-style: none;
+        }
+
+        .allied.text-danger {
+            border-bottom-color: white !important;
+        }
+
+        .item-stock {
+            display: inline-block;
+            width: 40px;
+            text-align: center;
+        }
+
+        /* .list-group-item {
+            background-image:
+                linear-gradient(to bottom,
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(255, 255, 255, 1) 100%),
+                linear-gradient(to bottom,
+                    rgb(5, 116, 42) 0%,
+                    rgb(6, 146, 92) 100%);
+            background-clip: content-box, padding-box;
+        } */
+    </style>
+    <div id="app">
+        <h1 class="display-1">Product management</h1>
+        <!-- <ul v-for="(item,index) in products" class="list-group">
+            <li class="list-group-item list-group-item-action list-group-item-primary">Product name:{{ item.name }},
+                Stock: {{ item.stock }}
+            </li>
+        </ul> -->
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col" class="allied text-danger">Allied</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody v-for="(item,index) in products">
+                <tr>
+                    <th scope="row">{{index+1}}</th>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <button @click="item.stock>0 ? item.stock-- : item.stock=0">-</button>
+                        <span class="item-stock">{{item.stock?item.stock:'无货'}}</span>
+                        <button @click="addStock(index)">+</button>
+                    </td>
+                    <td>
+                        <button @click="remove(index)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tr>
+                <th>Total</th>
+                <td>{{total}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                products: [{
+                        name: "Aorus 3060 super",
+                        stock: 6
+                    },
+                    {
+                        name: "Gigabyte 3070 oc",
+                        stock: 46
+                    },
+                    {
+                        name: "Msi 3090 gaming trio",
+                        stock: 20
+                    },
+                    {
+                        name: "AMD Ryzen 5 5800x",
+                        stock: 35
+                    },
+                    {
+                        name: "AMD Ryzen 7 5900x",
+                        stock: 22
+                    },
+                    {
+                        name: "AMD Ryzen 9 5800x",
+                        stock: 15
+                    },
+                    {
+                        name: "Intel i5 10400kf",
+                        stock: 50
+                    },
+                    {
+                        name: "Intel i7 10400kf",
+                        stock: 37
+                    },
+                    {
+                        name: "Intel i9 10400kf",
+                        stock: 20
+                    }
+                ],
+            },
+            methods: {
+                addStock: function (index) {
+                    this.products[index].stock++
+                },
+                remove: function (index) {
+                    this.products.splice(index, 1)
+                }
+            },
+            computed: {
+                total() {
+                    return this.products.reduce((accumulator, currentValue) => accumulator + currentValue.stock,
+                        0)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
