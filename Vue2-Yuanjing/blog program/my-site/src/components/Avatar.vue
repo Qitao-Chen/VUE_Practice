@@ -30,6 +30,7 @@ export default {
 </script>
 
 <style scoped>
+    /* scoped样式作用域 */
     .avatar-img{
         /* border-radius: 50%; */
         display: block;
