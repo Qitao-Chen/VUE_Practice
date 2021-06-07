@@ -31,6 +31,7 @@ export default {
 
 <style scoped>
     /* scoped样式作用域 */
+    /* 现在测试mac端改变。windows同步过去 */
     .avatar-img{
         /* border-radius: 50%; */
         display: block;
