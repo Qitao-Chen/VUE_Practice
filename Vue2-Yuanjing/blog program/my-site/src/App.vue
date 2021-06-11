@@ -8,6 +8,7 @@
     <h3>{{ getFullName() }}</h3>
     <h3>{{ getFullName() }}</h3>
     <Icon iconType="home"/>
+    <Icon iconType= "warn" />
     <button @click="fullName='ERIC CHEN'">click me to change the fullName</button>
     <Profile name="RUNJIE SUN" link="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/512px-LEGO_logo.svg.png"/>
     <img alt="Vue logo" src="./assets/logo.png">
