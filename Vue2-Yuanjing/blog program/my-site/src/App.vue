@@ -12,6 +12,7 @@
     <button @click="fullName='ERIC CHEN'">click me to change the fullName</button>
     <Profile name="RUNJIE SUN" link="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/512px-LEGO_logo.svg.png"/>
     <img alt="Vue logo" src="./assets/logo.png">
+    <Pager />
     <Avatar url='https://avatars.githubusercontent.com/u/54574452?v=4' :size="100" :percent="50"/>
     <HelloWorld msg="Amy Welcome to Your Vue.js App"
     say="I want say That this is the first step of Vue Odyssey"/>
@@ -24,13 +25,15 @@ import HelloWorld from './components/HelloWorld.vue'
 import Profile from './components/profile.vue'
 import Avatar from './components/Avatar.vue'
 import Icon from './components/Icon.vue'
+import Pager from './components/Pager.vue'
 export default {
   name: 'Appl',
   components: {
     HelloWorld,
     Profile,
     Avatar,
-    Icon
+    Icon,
+    Pager
   },
   data(){
     return {

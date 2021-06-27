@@ -1,6 +1,6 @@
 <template>
   <img 
-  class="avatar-img"
+  class="avatar-container"
   :src="url" 
   :style="{
       width:size + 'px',
@@ -34,7 +34,7 @@ export default {
     /* 现在测试mac端改变。windows同步过去 */
     /* windows端 直接 git pull 成功 */
     /* 第二次测试windows端改变，mac同步 */
-    .avatar-img{
+    .avatar-container{
         /* border-radius: 50%; */
         display: block;
         object-fit: cover;
