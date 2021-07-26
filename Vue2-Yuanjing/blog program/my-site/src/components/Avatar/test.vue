@@ -1,6 +1,6 @@
 <template>
   <div>
-       <Avatar url='https://avatars.githubusercontent.com/u/54574452?v=4' :size="100" :percent="50"/>
+       <Avatar url='https://avatars.githubusercontent.com/u/54574452?v=4'/>
   </div>
 </template>
 

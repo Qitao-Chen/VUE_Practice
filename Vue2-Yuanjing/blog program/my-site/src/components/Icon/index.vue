@@ -41,6 +41,10 @@ export default {
 }
 </script>
 
-<style>
-@import "//at.alicdn.com/t/font_2164449_nalfgtq7il.css"
+<style  lang="less" scoped>
+@import "//at.alicdn.com/t/font_2164449_nalfgtq7il.css";
+.iconfont{
+  color: inherit;
+  font-size: inherit;
+}
 </style>

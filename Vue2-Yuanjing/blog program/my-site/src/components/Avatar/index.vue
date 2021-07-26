@@ -19,10 +19,11 @@ export default {
         },
         size:{
         type: Number,
-        required: true
+        default: 150,
         },
         percent:{
         type: Number,
+        default:50,
         }
       
     }
@@ -34,8 +35,7 @@ export default {
     /* 现在测试mac端改变。windows同步过去 */
     /* windows端 直接 git pull 成功 */
     /* 第二次测试windows端改变，mac同步 */
-    .avatar-container{
-        /* border-radius: 50%; */
+    .avatar-container{      
         display: block;
         object-fit: cover;
     }
