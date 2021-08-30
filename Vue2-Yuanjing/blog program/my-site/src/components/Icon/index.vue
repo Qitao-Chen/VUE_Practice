@@ -27,14 +27,14 @@ const classMap = {
 export default {
     name: "icon",
     props:{
-        iconType:{
+        type:{
             type: String,
             required: true,
         }
     },
     computed:{
       fontClass(){
-          return classMap[this.iconType]
+          return classMap[this.type]
       }
     }
    

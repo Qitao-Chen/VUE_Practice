@@ -10,7 +10,7 @@
            <li>
             <a href="https://github.com/Qitao-Chen">
                 <div class="icon">
-                    <Icon iconType="github"/>
+                    <Icon type="github"/>
                 </div>
                 <span>Qitao-Chen</span>
             </a>
@@ -18,7 +18,7 @@
         <li>
             <a href="tencent://message/?Menu=yes&uin=596298440&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">
                 <div class="icon">
-                    <Icon iconType="qq"/>
+                    <Icon type="qq"/>
                 </div>
                 <span>596298440</span>
             </a>
@@ -29,7 +29,7 @@
              <li>
             <a href="">
                 <div class="icon">
-                    <Icon iconType="weixin"/>
+                    <Icon type="weixin"/>
                 </div>
                 <span>ziyangchen</span>
             </a>
@@ -40,7 +40,7 @@
            <li>
             <a href="mailto:eric.chen.adl@outlook.com">
                 <div class="icon">
-                    <Icon iconType="mail"/>
+                    <Icon type="mail"/>
                 </div>
                 <span>eric.chen.adl@outlook.com</span>
             </a>

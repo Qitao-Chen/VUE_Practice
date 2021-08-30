@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Icon iconType="home"/>
+      <Icon type="home"/>
   </div>
 </template>
 

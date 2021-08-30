@@ -2,7 +2,7 @@
   <div class="site-aside-container">
       <div class="avatar-container">
         <Avatar url="https://avatars.githubusercontent.com/u/54574452?v=4"/>
-        <h1 class="title">Eric的小窝</h1>
+        <h1 class="title">Eric的GitBlog</h1>
       </div>
     <Menu />
     <Contact />

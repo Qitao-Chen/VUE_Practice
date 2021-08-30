@@ -1,14 +1,17 @@
 <template>
   <nav class="menu-container">
-<a  v-for="(item,index) in items" 
+<Router-link  v-for="(item,index) in items" 
+    :exact="item.exact"
     :key="index" 
-    :href="item.link" 
-    :class="{selected:isSelected(item)}">
+    :to="{name:item.name}" 
+    active-class="selected"
+    exact-active-class=""
+    >
     <div class="icon">
-        <Icon :iconType="item.icon"/>
+        <Icon :type="item.icon"/>
     </div>
     <span>{{item.title}}</span>
-</a>
+</Router-link>
   </nav>
 </template>
 
@@ -21,42 +24,52 @@ export default {
     data(){
       return {
            items:[{
-            link:"/",
+            name:"Home",
             title:"Home",
-            icon:"home"
+            icon:"home",
+            exact:true
         },{
-            link:"/blog",
+            name:"Blog",
             title:"Article",
             icon:"blog",
-            start:true//只要当前路径以link开头，当前菜单就是选中的。
-        },{
-            link:"/about",
+            exact:false//只要当前路径以link开头，当前菜单就是选中的。
+        },{ 
+            name:"About",
             title:"About Me",
-            icon:"about"
+            icon:"about",
+            exact:true
+
         },{
-            link:"/project",
+            name:"Project",
             title:"Project&Effect",
-            icon:"code"
+            icon:"code",
+            exact:true
+
         },{
-            link:"/message",
+            name:"Message",
             title:"Message",
-            icon:"chat"
+            icon:"chat",
+            exact:true
         }
         ]
     }
     },
-    methods:{
-        isSelected(item){
-            var link = item.link.toLowerCase();//菜单的链接地址
-            var curPathname = location.pathname.toLowerCase();//当前浏览器的访问路径
-           if(item.start){
-               console.log(link)
-               return curPathname.startsWith(link);//利用startsWith函数
-           }else{
-               return link === curPathname
-           }
-        }
-    }
+    //下面的方法为老师没讲router-link-active api之前的解决方法
+    //:class="{selected:isSelected(item)}"
+    // methods:{
+    //     isSelected(item){
+    //         var link = item.link.toLowerCase();//菜单的链接地址
+    //         console.log(link)
+    //         var curPathname = location.pathname.toLowerCase();//当前浏览器的访问路径
+    //        if(item.start){
+                    //前提在不需要精确匹配的对象里 加上start属性，属性值为true
+    //            console.log(link)
+    //            return curPathname.startsWith(link);//利用startsWith函数
+    //        }else{
+    //            return link === curPathname
+    //        }
+    //     }
+    // }
 }
 </script>
 

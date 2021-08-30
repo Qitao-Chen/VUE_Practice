@@ -1,6 +1,6 @@
 <template>
   <div class="empty-container">
-      <Icon iconType="empty" />
+      <Icon type="empty" />
       <p>{{ text }}</p>
   </div>
 </template>
