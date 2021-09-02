@@ -26,12 +26,18 @@ export default function (options = {}) {
     div.innerHTML = `<span class="${styles.icon}">${el.outerHTML}</span><div>${content}</div>`;
     // console.log(el.outerHTML)
     // console.log(typeof el.outerHTML)
-    //将div加到容器中
-   
-        if (getComputedStyle(container).position === "static") {
+  
+   if(options.container){
+       /**如果指定了container才改變position特性值
+       *這裏需要注意，在api/banner.js中 調用showMessage的時候。如果不判斷，
+       *直接將document.body的positions設置爲relative時 會出問題
+       */
+    if (getComputedStyle(container).position === "static") {
             container.style.position = "relative"
         }
-    
+   }
+   
+    //将div加到容器中
     container.appendChild(div);
     //浏览器强行渲染
     div.clientHeight;

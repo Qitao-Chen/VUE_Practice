@@ -16,8 +16,11 @@
     "test-Layout": "vue serve ./src/components/Layout/test.vue"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "chokidar": "^3.5.2",
     "core-js": "^3.6.5",
+    "mock": "^0.1.1",
+    "mockjs": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.5.2"
   },
