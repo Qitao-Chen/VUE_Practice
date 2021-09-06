@@ -12,6 +12,10 @@
 </template>
 
 <script>
+/**
+ * 属性：src placeholder duration
+ * 事件：imgLoad
+ */
 export default {
     props:{
         src:{

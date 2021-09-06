@@ -1,17 +1,18 @@
 <template>
-  <div class="home-container" ref="container">
+  <div class="home-container" ref="container" @wheel="handleWheel">
     <ul
+    @transitionend="handleTransition"
       class="carousel-container"
       :style="{
         marginTop,
       }"
     >
-      <li v-for="item in banners" :key="item.id"
+      <li v-for="(item) in banners" :key="item.id"
       :style="{
         background,
       }"
       >
-        <Carouselitem />
+        <Carouselitem :carousel="item" />
       </li>
     </ul>
     <div class="icon icon-up"
@@ -39,6 +40,7 @@ import { getBanners } from "@/api/banner.js";
 import Carouselitem from "./Carouselitem.vue";
 import Icon from "@/components/Icon";
 
+
 export default {
   components: {
     Carouselitem,
@@ -49,15 +51,19 @@ export default {
       banners: [],
       index: 0, //当前显示地基张轮播图
       containerHeight: 0, //整个容器的高度
-      
+      switching:false,// switching photos?
     };
   },
   async created() {
     this.banners = await getBanners();
-    console.log(this.banners);
+    
   },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
+    window.addEventListener("resize",this.handleResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize",this.handleResize)
   },
   computed: {
     marginTop() {
@@ -73,7 +79,34 @@ export default {
     switchTo(i){
     
       this.index = i;
-      
+        console.log("====",this.index)
+    },
+    handleWheel(e){
+      console.log(e.deltaY,e)
+      if(this.switching){
+        console.log("正在切换。。。")
+        return;
+      }    
+      if(e.deltaY < -5 && this.index > 0){
+        //往上
+         this.switching = true;
+         this.index--;
+        console.log('上一个')
+      }else if(e.deltaY > 5 && this.index < this.banners.length-1){
+        //往下
+         this.switching = true;
+         this.index++;
+        console.log("下一个")
+      }
+      //利用transition end 来决定this.switching的值。
+      // this.switching=false
+    },
+    handleTransition(){
+      console.log("transition end")
+      this.switching = false;
+    },
+    handleResize(){
+      this.containerHeight = this.$refs.container.clientHeight;
     }
   }
 };
