@@ -71,7 +71,7 @@ export default {
       return -this.index * this.containerHeight + "px";
     }, 
     background(){
-      const color= ["lightgreen","red","lightblue"];
+      const color= ["#FE6012","#033672","#006D87","black"];
       return color[this.index]
     }
   },
