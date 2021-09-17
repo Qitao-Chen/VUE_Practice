@@ -1,6 +1,6 @@
 import request from "./request"
 
-export async function getBanners(){
+export async function getBanners() {
     const resp = await request.get("/api/banner");
     return resp;
 }
@@ -21,7 +21,7 @@ getBanners().then((r) => {
 
 // export async function getBanners(){
 //     const resp = await instance.get("/api/banner");
-      
+
 //     if(resp.data.code ===0){
 //         return resp.data.data;
 //     }
@@ -30,7 +30,7 @@ getBanners().then((r) => {
 //         content:resp.data.msg,
 //         type: "error",
 //         duration: 2000,
-        
+
 //     })
 //     return null;
 // }
@@ -50,5 +50,3 @@ getBanners().then((r) => {
 // }
 
 // getNews();
-
-

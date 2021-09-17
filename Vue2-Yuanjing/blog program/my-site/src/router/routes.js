@@ -4,10 +4,34 @@ import About from "@/views/About"
 import Project from "@/views/Project"
 import Message from "@/views/Message"
 
-export default [
-    {name:"Home",path:"/",component:Home},
-    {name:"Blog",path:"/bloghahaha",component:Blog},
-    {name:"About",path:"/about",component:About},
-    {name:"Project",path:"/project",component:Project},
-    {name:"Message",path:"/message",component:Message},
-  ];
+export default [{
+    name: "Home",
+    path: "/",
+    component: Home
+  },
+  {
+    name: "Blog",
+    path: "/article",
+    component: Blog
+  },
+  {
+    name: "Category",
+    path: "/article/cate/:categoryId",
+    component: Blog
+  },
+  {
+    name: "About",
+    path: "/about",
+    component: About
+  },
+  {
+    name: "Project",
+    path: "/project",
+    component: Project
+  },
+  {
+    name: "Message",
+    path: "/message",
+    component: Message
+  },
+];

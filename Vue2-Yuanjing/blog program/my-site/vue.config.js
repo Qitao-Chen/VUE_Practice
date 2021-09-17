@@ -1,8 +1,11 @@
 module.exports = {
-    devServer:{
+    devServer: {
         proxy: {
-            "/j":{
+            "/j": {
                 target: "https://movie.douban.com",
+            },
+            "/ajax": {
+                target: "https://au.j-son.cloud",
             }
         }
     }

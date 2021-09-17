@@ -7,7 +7,7 @@
         marginTop,
       }"
     >
-      <li v-for="(item) in banners" :key="item.id"
+      <li v-for="(item) in data" :key="item.id"
       :style="{
         background,
       }"
@@ -22,16 +22,18 @@
       <Icon type="arrowUp" />
     </div>
     <div class="icon icon-down"
-    v-show="index < banners.length-1"
+    v-show="index < data.length-1"
      @click="switchTo(index + 1)"
     >
       <Icon type="arrowDown" />
     </div>
     <ul class="indicator">
-      <li :class="{active: i === index }" v-for="(item,i) in banners" :key="item.id"
+      <li :class="{active: i === index }" v-for="(item,i) in data" :key="item.id"
       @click="switchTo(i)"
       ></li>
     </ul>
+    <div v-loading="isLoading"></div>
+    <!-- <Loading v-if="isLoading" /> -->
   </div>
 </template>
 
@@ -39,25 +41,29 @@
 import { getBanners } from "@/api/banner.js";
 import Carouselitem from "./Carouselitem.vue";
 import Icon from "@/components/Icon";
-
+import Loading from "@/components/Loading";
+import fetchData from "@/mixins/fetchData.js";
 
 export default {
+  mixins:[fetchData([])],
   components: {
     Carouselitem,
     Icon,
+    Loading,
   },
   data() {
     return {
-      banners: [],
+      // data: [],
       index: 0, //当前显示地基张轮播图
       containerHeight: 0, //整个容器的高度
       switching:false,// switching photos?
+      // isLoading:true,// loading svg
     };
   },
-  async created() {
-    this.banners = await getBanners();
-    
-  },
+  // async created() {
+  //   this.data = await getdata();
+  //   this.isLoading = false;
+  // },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
     window.addEventListener("resize",this.handleResize);
@@ -71,7 +77,7 @@ export default {
       return -this.index * this.containerHeight + "px";
     }, 
     background(){
-      const color= ["#FE6012","#033672","#006D87","black"];
+      const color= ["white","#033672","#006D87","#FE6012"];
       return color[this.index]
     }
   },
@@ -92,7 +98,7 @@ export default {
          this.switching = true;
          this.index--;
         console.log('上一个')
-      }else if(e.deltaY > 5 && this.index < this.banners.length-1){
+      }else if(e.deltaY > 5 && this.index < this.data.length-1){
         //往下
          this.switching = true;
          this.index++;
@@ -107,7 +113,10 @@ export default {
     },
     handleResize(){
       this.containerHeight = this.$refs.container.clientHeight;
-    }
+    },
+    async fetchData(){
+      return await getBanners();
+    },
   }
 };
 </script>

@@ -49,7 +49,7 @@ export default {
       }
       const extraWidth = this.innerSize.width - this.containerSize.width;
       const extraHeight = this.innerSize.height - this.containerSize.height;
-      console.log(extraWidth,extraHeight)
+     
       const left = (-extraWidth * this.mouseX) / this.containerSize.width;
       const top =  (-extraHeight* this.mouseY) / this.containerSize.height;
       return {
@@ -66,7 +66,7 @@ export default {
   },
   mounted(){
      //get the value of title and description width.
-     this.textWidth = {
+      this.textWidth = {
       title:this.$refs.title.clientWidth,
       desc:this.$refs.desc.clientWidth
     };
@@ -107,7 +107,7 @@ export default {
       
       this.mouseX = e.clientX - rect.left;
       this.mouseY = e.clientY - rect.top;
-      console.log(this.clientX)
+     
     },
     handleMouseLeave(e){
       this.mouseX = this.mouseCenter.x;
