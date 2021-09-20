@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       // data: [],
-      index: 0, //当前显示地基张轮播图
+      index: 0, //当前显示第几张轮播图
       containerHeight: 0, //整个容器的高度
       switching:false,// switching photos?
       // isLoading:true,// loading svg
@@ -108,7 +108,6 @@ export default {
       // this.switching=false
     },
     handleTransition(){
-      console.log("transition end")
       this.switching = false;
     },
     handleResize(){
@@ -117,7 +116,13 @@ export default {
     async fetchData(){
       return await getBanners();
     },
-  }
+  },
+//  watch:{
+//    index(){
+//      console.log(this.$refs.carouselItem[0].showWords)
+//      this.$refs.carouselItem[this.index].showWords();
+//    }
+//  }
 };
 </script>
 

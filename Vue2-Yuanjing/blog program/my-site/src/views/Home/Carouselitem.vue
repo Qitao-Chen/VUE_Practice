@@ -2,16 +2,17 @@
  <div class="carousel-item-container" 
   ref="carouselContainer" 
   @mousemove="handleMouseMove($event)" 
-  @mouseleave="handleMouseLeave">
+  @mouseleave="handleMouseLeave
+  
+  ">
    <div class="carousel-img" ref="carouselImg"
   :style="imagePosition"
    >
      <ImageLoader  @imgLoad="this.showWords" :src="carousel.bigImg" :placeholder="carousel.midImg" />
    </div>
-   <div 
-   class="title" ref="title">{{ carousel.title }}</div>
+   <div class="title" ref="title">{{ carousel.title }}</div>
    <div class="desc" ref="desc">{{ carousel.description }}</div>
-   <div class="textWidth">{{ textWidth }} {{ mouseX }} {{ mouseY }}</div>
+   <div class="textWidth">{{ textWidth }} {{ mouseX }} {{ mouseY }} {{ carousel.id }}</div>
   
  </div>
 </template>
@@ -29,6 +30,7 @@ export default {
       innerSize:null,
       mouseX:0,
       mouseY:0,
+      pageIndex:0,
         }
   },
   props:{
@@ -80,6 +82,7 @@ export default {
   },
   methods:{
     showWords(){
+      console.log("zhixingle ")
       //display title and description
     this.$refs.title.style.opacity = 1;
     this.$refs.title.style.width = 0;
@@ -103,6 +106,7 @@ export default {
     
     },
     handleMouseMove(e){
+      
       const rect = this.$refs.carouselContainer.getBoundingClientRect();
       
       this.mouseX = e.clientX - rect.left;
@@ -113,7 +117,7 @@ export default {
       this.mouseX = this.mouseCenter.x;
       this.mouseY = this.mouseCenter.y;
     }
-  }
+  },
 };
 </script>
 

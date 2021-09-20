@@ -1,12 +1,10 @@
 <template>
   <div class="pager-container" v-if="pageNumber > 1">
-      <a  @click="handleClick(1)" v-show="current > 1" :class="{disabled: current ===1}">|&lt;&lt;</a>
-      <a  @click="handleClick(current - 1)" :class="{disabled: current ===1}">&lt;&lt;</a>
-      <a  @click="handleClick(n)" v-for="(n,i) in numbers" :key="i" :class="{active: n === current}">{{ n }}</a>
-     
-      <a  @click="handleClick(current + 1)" :class="{disabled: current ===pageNumber}">&gt;&gt;</a>
-
-      <a @click="handleClick(pageNumber)" v-show="current !== pageNumber" :class="{disabled: current ===pageNumber}">&gt;&gt;|</a>
+      <a class="noselect" @click="handleClick(1)" v-show="current > 1" :class="{disabled: current ===1}">|&lt;&lt;</a>
+      <a class="noselect" @click="handleClick(current - 1)" :class="{disabled: current ===1}">Previous</a>
+      <a class="noselect" @click="handleClick(n)" v-for="(n,i) in numbers" :key="i" :class="{active: n === current}">{{ n }}</a>
+      <a class="noselect" @click="handleClick(current + 1)" :class="{disabled: current ===pageNumber}">Next</a>
+      <a class="noselect" @click="handleClick(pageNumber)" v-show="current !== pageNumber" :class="{disabled: current ===pageNumber}">&gt;&gt;|</a>
     
   </div>
 </template>
@@ -61,7 +59,9 @@ export default {
   },
   methods:{
     handleClick(newPage){
-     
+      //current page number less than 1
+      //current page number great than 'pageNumber'
+      //current page number === new page number
       if(newPage < 1){
         newPage = 1
       }
@@ -71,6 +71,7 @@ export default {
       if(newPage === this.current){
         return;
       }
+      //else pop to father components handle
       this.$emit('pageChange',newPage)
     }
   }
@@ -98,5 +99,13 @@ export default {
         cursor: text;
       }
     }
+    .noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
   }
 </style>

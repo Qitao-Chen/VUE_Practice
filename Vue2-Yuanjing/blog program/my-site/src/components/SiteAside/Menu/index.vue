@@ -10,7 +10,7 @@
     <div class="icon">
         <Icon :type="item.icon"/>
     </div>
-    <span>{{item.title}}</span>
+    <span style="white-space:nowrap">{{item.title}}</span>
 </Router-link>
   </nav>
 </template>
@@ -41,7 +41,7 @@ export default {
 
         },{
             name:"Project",
-            title:"Project&Effect",
+            title:"Project and Effect",
             icon:"code",
             exact:true
 
@@ -89,7 +89,7 @@ export default {
             height: 45px;
            
             .icon{
-                width: 24px;
+                margin-right: 15px;
                 font-size: 16px;
                 
             }

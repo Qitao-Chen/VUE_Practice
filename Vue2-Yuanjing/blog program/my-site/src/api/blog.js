@@ -1,5 +1,5 @@
 import request from "./request";
-export async function getBlogs(page = 1, limit = 100, categoryid = -1) {
+export async function getBlogs(page = 1, limit = 10, categoryid = -1) {
     const resp = await request.get("/api/blog", {
         params: {
             page,

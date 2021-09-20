@@ -15,7 +15,7 @@ export default [{
     component: Blog
   },
   {
-    name: "Category",
+    name: "CategoryBlog",
     path: "/article/cate/:categoryId",
     component: Blog
   },
