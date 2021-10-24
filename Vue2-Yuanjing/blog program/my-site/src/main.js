@@ -17,14 +17,17 @@ Vue.directive("loading", vLoading);
 /**
  * only for development test 
  */
-import '../src/api/test.js';
-// import * as blogApi from "./api/blog.js";
+// import '../src/api/test.js';
+import * as blogApi from "./api/blog.js";
 // blogApi.getBlogTypes().then(r => {
 //   console.log("blog types:", r);
 // })
 // blogApi.getBlogs().then(r => {
 //   console.log("blogs", r)
 // })
+blogApi.getComments('12451', 2, 20).then(r => {
+  console.log(r)
+})
 
 Vue.config.productionTip = false
 new Vue({

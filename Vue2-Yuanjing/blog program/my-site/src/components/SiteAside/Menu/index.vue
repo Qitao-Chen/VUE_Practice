@@ -4,7 +4,6 @@
     :exact="item.exact"
     :key="index" 
     :to="{name:item.name}" 
-    active-class="selected"
     exact-active-class=""
     >
     <div class="icon">

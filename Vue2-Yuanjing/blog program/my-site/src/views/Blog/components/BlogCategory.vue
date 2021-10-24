@@ -25,7 +25,7 @@ export default {
       const totalArticleCount =  this.data.reduce((pre,current)=>{         
       return  pre + current.articleCount
       },0)
-    const result = [
+      const result = [
         {
         name:'Total',
         id:-1,
@@ -33,7 +33,6 @@ export default {
       },...this.data
       ];
       const mapRes= result.map(obj => {
-        console.log(obj)
         if(obj.id === this.categoryId){
          return{
            isSelect:true,
@@ -85,7 +84,7 @@ export default {
 <style lang="less" scoped>
 .blog-category-container{
     width: 300px;
-    height: 95%;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
     overflow: hidden;

@@ -3,20 +3,40 @@
       <ul>
         <li v-for="item in data.rows" :key="item.id">
           <div class="thumb" v-if="item.thumb">
-            <a href="">
+            <RouterLink
+            :to="{
+              name:'BlogDetail',
+              params:{
+                id:item.id
+              }
+              }"
+            >
               <img :src="item.thumb" :alt="item.title" :title="item.title">
-            </a>
+            </RouterLink>
           </div>
           <div class="main">
-            <a href="">
+           <RouterLink
+            :to="{
+              name:'BlogDetail',
+              params:{
+                id:item.id
+              }
+              }"
+            >
               <h2>{{ item.title }}</h2>
-            </a>
-          
+            </RouterLink>         
           <div class="aside">
             <span>Date: {{ item.createDate }} </span>
             <span>views: {{ item.scanNumber }}</span>
             <span>comment:{{ item.commentNumber }}</span>
-           <a href="/article/cate/8">{{ item.category.name }}</a>
+            <RouterLink
+            :to="{
+              name:'CategoryBlog',
+              params:{
+                categoryId:item.category.id
+                }
+            }"
+            >{{ item.category.name }}</RouterLink>
           </div>
           <div class="desc">
             {{ item.description }}
@@ -25,7 +45,6 @@
         </li>
       </ul>
   <!-- Pager here -->
-     
         <Pager 
         v-if="data.total"
         :current=this.routeInfo.page
@@ -37,6 +56,11 @@
 </template>
 
 <script>
+/**
+ * 1st:To get all the routeInfo from the start page(in computed).
+ * 2nd:To complete handlePageChange method. get all new route info when user click the page component.
+ * 3rd:Using "watch api"  to observe $route and call "this.fetchData()" again. 
+ */
 import fetchData from "@/mixins/fetchData.js";
 import {getBlogs} from "@/api/blog.js";
 import Pager from "@/components/Pager";
@@ -110,15 +134,13 @@ watch:{
 <style lang="less" scoped>
 @import url(~@/styles/var.less);
 .blog-list-container{
-  
-   
     position: relative;
     line-height: 1.7;
     padding: 20px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     width: 100%;
-    height: 95%;
+    height: 100%;
     box-sizing: border-box;
     scroll-behavior: smooth;
     ul{

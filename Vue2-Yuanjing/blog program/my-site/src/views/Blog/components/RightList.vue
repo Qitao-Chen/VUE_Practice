@@ -5,7 +5,7 @@
       v-for="(item,i) in list" :key="i" 
       > 
       <span @click="handleClick(item)" :class="{active: item.isSelect}">{{ item.name }} </span>
-      <span v-if="item.aside" class="aside">{{ item.aside }}</span>
+      <span v-if="item.aside" class="aside" @click="handleClick(item)">{{ item.aside }}</span>
       <RightList :list="item.children" @select="handleClick" />
       </li>  
   </ul>
@@ -24,8 +24,11 @@ props:{
 },
 methods:{
     handleClick(item){
-        //自定义事件select 抛出给父组件
+        //自定义事件select 抛出给父组件     
+        if(!item.isSelect){
+        //Using an 'if' statement to Avoided redundant navigation
         this.$emit("select",item)
+        }  
     }
 }
 }

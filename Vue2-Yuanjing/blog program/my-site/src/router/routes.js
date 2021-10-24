@@ -3,7 +3,7 @@ import Blog from "@/views/Blog"
 import About from "@/views/About"
 import Project from "@/views/Project"
 import Message from "@/views/Message"
-
+import BlogDetail from "@/views/Blog/Detail"
 export default [{
     name: "Home",
     path: "/",
@@ -18,6 +18,11 @@ export default [{
     name: "CategoryBlog",
     path: "/article/cate/:categoryId",
     component: Blog
+  },
+  {
+    name: "BlogDetail",
+    path: "/article/:id",
+    component: BlogDetail
   },
   {
     name: "About",

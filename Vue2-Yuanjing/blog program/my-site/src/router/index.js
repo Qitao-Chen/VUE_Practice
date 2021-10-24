@@ -7,6 +7,7 @@ import routes from "./routes.js"
 const router = new VueRouter({
   //配置
   routes,
-  mode: "history"
+  mode: "history",
+  linkActiveClass: "selected"
 })
 export default router;
