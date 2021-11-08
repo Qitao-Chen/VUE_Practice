@@ -4,6 +4,7 @@ import App from './App.vue';
 import './styles/global.less';
 import router from './router/index.js';
 import showMessage from "@/utils/showMessage";
+import './eventBus.js'
 //將常用的功能函數挂載到Vue原型上面，在其他組件中方便使用。不需要每次都引用
 Vue.prototype.$showMessage = showMessage;
 // import showMessage from './utils/showMessage.js'
@@ -13,7 +14,8 @@ Vue.prototype.$showMessage = showMessage;
 //register global directive
 import vLoading from "@/directives/loading.js";
 Vue.directive("loading", vLoading);
-
+import vLazy from "@/directives/lazy.js";
+Vue.directive("lazy", vLazy);
 /**
  * only for development test 
  */

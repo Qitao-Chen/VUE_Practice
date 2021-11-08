@@ -32,7 +32,6 @@ export async function getComments(blogid, page = 1, limit = 10) {
             blogid,
             page,
             limit,
-
         }
     })
 }

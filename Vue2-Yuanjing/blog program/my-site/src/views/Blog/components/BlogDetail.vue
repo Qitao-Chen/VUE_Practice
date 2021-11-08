@@ -5,8 +5,13 @@
  <div class="aside">
      <span>Date:{{blog.createDate}}</span>
      <span>Views:{{blog.scanNumber}}</span>
-     <a href=""><span>Comments:{{blog.commentNumber}}</span></a>
-     <a href=""><span>{{blog.category.name}}</span></a>
+     <a href="#data-form-container"><span>Comments:{{blog.commentNumber}}</span></a>
+     <RouterLink
+     :to="{
+         name:'CategoryBlog',
+         params:{categoryId:blog.category.id}
+     }"
+     ><span>{{blog.category.name}}</span> </RouterLink>
  </div>
  <div v-html="blog.htmlContent">
      

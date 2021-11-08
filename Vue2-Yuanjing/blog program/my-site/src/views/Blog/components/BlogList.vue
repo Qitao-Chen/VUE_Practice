@@ -11,7 +11,7 @@
               }
               }"
             >
-              <img :src="item.thumb" :alt="item.title" :title="item.title">
+              <img v-lazy="item.thumb" :alt="item.title" :title="item.title">
             </RouterLink>
           </div>
           <div class="main">
@@ -64,11 +64,21 @@
 import fetchData from "@/mixins/fetchData.js";
 import {getBlogs} from "@/api/blog.js";
 import Pager from "@/components/Pager";
+import mainScroll from '@/mixins/mainScroll.js';
 export default {
-  mixins:[fetchData({})],
+  mixins:[fetchData({}),mainScroll('container')],
 components:{
   Pager,
 },
+// mounted(){
+//   this.$refs.container.addEventListener('scroll',this.handleScroll);
+//   this.$bus.$on('setMainScroll',this.handleSetMainScroll);
+// },
+// beforeDestroy(){
+//   this.$bus.$emit('mainScroll');
+//    this.$bus.$off('setMainScroll',this.handleSetMainScroll);
+//   this.$refs.container.removeEventListener('scroll',this.handleScroll)
+// },
 computed:{
   routeInfo(){
     //getRouteParams
@@ -90,6 +100,13 @@ computed:{
 }
 },
 methods:{
+  // handleSetMainScroll(topPosition){
+  //   this.$refs.container.scrollTop = topPosition
+  // },
+  // handleScroll(){
+  //   console.log(1)
+  //   this.$bus.$emit('mainScroll',this.$refs.container)
+  // },
   async fetchData (){
       return await getBlogs(this.routeInfo.page,this.routeInfo.limit,this.routeInfo.categoryId);
     },

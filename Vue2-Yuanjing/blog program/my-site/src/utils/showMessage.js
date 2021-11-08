@@ -7,6 +7,7 @@ import styles from './showMessage.module.less'
  * @param {String} type 消息类型 info error success warn ...
  * @param {Number} duration 消息多久后自动消失，默认2000
  * @param {HTMLElement} container 消息会显示到该容器正中央， 默认传到页面正中
+ * @param {cb} callback 
  */
 export default function (options = {}) {
     //content, type = "info", duration = 2000, container
@@ -26,17 +27,16 @@ export default function (options = {}) {
     div.innerHTML = `<span class="${styles.icon}">${el.outerHTML}</span><div>${content}</div>`;
     // console.log(el.outerHTML)
     // console.log(typeof el.outerHTML)
-  
-   if(options.container){
-       /**如果指定了container才改變position特性值
-       *這裏需要注意，在api/banner.js中 調用showMessage的時候。如果不判斷，
-       *直接將document.body的positions設置爲relative時 會出問題
-       */
-    if (getComputedStyle(container).position === "static") {
+    if (options.container) {
+        /**如果指定了container才改變position特性值
+         *這裏需要注意，在api/banner.js中 調用showMessage的時候。如果不判斷，
+         *直接將document.body的positions設置爲relative時 會出問題
+         */
+        if (getComputedStyle(container).position === "static") {
             container.style.position = "relative"
         }
-   }
-   
+    }
+
     //将div加到容器中
     container.appendChild(div);
     //浏览器强行渲染
@@ -53,7 +53,7 @@ export default function (options = {}) {
         div.addEventListener("transitionend", function () {
             div.remove();
             //運行回調函數
-            if(options.callback){
+            if (options.callback) {
                 options.callback();
             }
         }, {

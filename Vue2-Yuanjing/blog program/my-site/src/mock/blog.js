@@ -16,7 +16,7 @@ function format(options) {
 Mock.mock("/api/blogtype", "get", {
     code: 0,
     msg: "",
-    'data|15-20': [{
+    'data|5-10': [{
         'id|+1': 1,
         name: 'category @id',
         'articleCount|0-300': 1, //该分类下文章的数量
@@ -42,12 +42,11 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function (options) {
                 },
                 'scanNumber|0-3000': 0,
                 'commentNumber|0-300': 0,
-                'thumb|1': [Random.image('300x250', '#033672', '#FFFFFF', 'Random Img'), null],
+                'thumb|1': ["@image(300x250, @color, #FFFFFF, @name)", null],
                 createDate: '@date(dd-MM-yyyy)',
             }],
         }
     });
-
 })
 //获取单个博客 blog 详情页
 Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
@@ -299,31 +298,32 @@ Mock.mock("/api/comment", "post", {
         content: "@cparagraph(1, 10)",
         createDate: Date.now(),
         "avatar|1": [
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+            "https://image.shutterstock.com/image-illustration/3d-rendering-cartoon-character-boy-260nw-1654587841.jpg",
+            "https://image.shutterstock.com/image-illustration/cartoon-character-little-boy-points-260nw-1550040197.jpg",
+            "https://image.shutterstock.com/image-illustration/cartoon-character-little-boy-showing-600w-1576879552.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBy3Ewh-7ukiFhpNc5MsLaToTAX7bp1vpOZBDkLU-4ZRqF6ThvM4CKKELb4beyG2obBHs&usqp=CAU",
         ],
     },
 })
 //分页获取评论
 Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function (options) {
     const obj = format(options)
+    console.log(obj.page)
     return Mock.mock({
         code: 0,
         msg: "",
         data: {
             "total|50-200": 0,
-            [`rows|${obj.limit || 10}`]: [{
+            [`rows|${(obj.limit) || 10}`]: [{
                 id: "@guid",
                 nickname: "@name",
                 content: "@paragraph(1, 10)",
                 createDate: Date.now(),
                 "avatar|1": [
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-                    "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+                    "https://image.shutterstock.com/image-illustration/3d-rendering-cartoon-character-boy-260nw-1654587841.jpg",
+                    "https://image.shutterstock.com/image-illustration/cartoon-character-little-boy-points-260nw-1550040197.jpg",
+                    "https://image.shutterstock.com/image-illustration/cartoon-character-little-boy-showing-600w-1576879552.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBy3Ewh-7ukiFhpNc5MsLaToTAX7bp1vpOZBDkLU-4ZRqF6ThvM4CKKELb4beyG2obBHs&usqp=CAU",
                 ],
             }, ],
         },
