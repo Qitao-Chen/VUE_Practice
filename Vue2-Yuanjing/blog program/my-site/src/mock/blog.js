@@ -27,25 +27,27 @@ Mock.mock("/api/blogtype", "get", {
 Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function (options) {
     //get the limit value from url
     const obj = format(options);
+    console.log(obj)
+    const data = {
+        'total|500-9999': 500,
+        [`rows|${obj.limit}`]: [{
+            id: "@guid",
+            title: '@title(3, 7)',
+            description: '@paragraph(1, 3)',
+            category: {
+                'id|1-10': 0,
+                name: "category@id",
+            },
+            'scanNumber|0-3000': 0,
+            'commentNumber|0-300': 0,
+            'thumb|1': ["@image(300x250, @color, #FFFFFF, @name)", null],
+            createDate: '@date(dd-MM-yyyy)',
+        }],
+    }
     return Mock.mock({
         code: 0,
         msg: "",
-        data: {
-            'total|500-9999': 500,
-            [`rows|${obj.limit}`]: [{
-                id: "@guid",
-                title: '@title(3, 7)',
-                description: '@paragraph(1, 3)',
-                category: {
-                    'id|1-10': 0,
-                    name: "category@id",
-                },
-                'scanNumber|0-3000': 0,
-                'commentNumber|0-300': 0,
-                'thumb|1': ["@image(300x250, @color, #FFFFFF, @name)", null],
-                createDate: '@date(dd-MM-yyyy)',
-            }],
-        }
+        data,
     });
 })
 //获取单个博客 blog 详情页

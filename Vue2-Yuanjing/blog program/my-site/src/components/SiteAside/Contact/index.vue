@@ -8,7 +8,7 @@
   </div> -->
     <ul class="contact-container">
            <li>
-            <a href="https://github.com/Qitao-Chen">
+            <a target="_blank" :href="data.github">
                 <div class="icon">
                     <Icon type="github"/>
                 </div>
@@ -16,14 +16,14 @@
             </a>
         </li>
         <li>
-            <a href="tencent://message/?Menu=yes&uin=596298440&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">
+            <a :href="data.qqMessage">
                 <div class="icon">
                     <Icon type="qq"/>
                 </div>
-                <span>596298440</span>
+                <span>{{data.qq}}</span>
             </a>
             <div class="pop">
-                <img src="https://i.ibb.co/9H65N34/5f5a72d6ff04c2ef02a0534ec078644.jpg" alt="">
+                <img :src="data.qqQrCode" alt="">
             </div>
         </li>
              <li>
@@ -31,18 +31,18 @@
                 <div class="icon">
                     <Icon type="weixin"/>
                 </div>
-                <span>ziyangchen</span>
+                <span>{{data.weixin}}</span>
             </a>
             <div class="pop">
-                <img src="https://i.ibb.co/9H65N34/5f5a72d6ff04c2ef02a0534ec078644.jpg" alt="">
+                <img :src="data.weixinQrCode" alt="">
             </div>
         </li>
            <li>
-            <a href="mailto:eric.chen.adl@outlook.com">
+            <a :href="`mailto:${data.mail}`">
                 <div class="icon">
                     <Icon type="mail"/>
                 </div>
-                <span>eric.chen.adl@outlook.com</span>
+                <span>{{data.mail}}</span>
             </a>
         </li>
     </ul>
@@ -50,7 +50,8 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon"
+import Icon from "@/components/Icon";
+import {mapState} from "vuex";
 export default {
     props:{
         // width:{
@@ -68,6 +69,12 @@ export default {
     },
     components:{
         Icon
+    },
+    async created(){
+        // await this.$store.dispatch("setting/fetchSetting");首页main.js触发
+    },
+    computed:{
+        ...mapState("setting",["loading","data"])
     }
 }
 </script>

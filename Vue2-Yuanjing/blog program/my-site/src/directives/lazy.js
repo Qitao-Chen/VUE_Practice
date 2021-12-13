@@ -1,10 +1,12 @@
 import eventBus from "@/eventBus";
-import defaultGif from "@/assets/default.gif"
+import defaultGif from "@/assets/default.gif";
+import JoJo from "@/assets/JoJo.jpg";
 import {
     debounce
 } from "@/utils";
 
 let imgs = [];
+
 //设置单张图片
 function setImage(img) {
     // imgs = imgs.filter((i) => {
@@ -18,13 +20,20 @@ function setImage(img) {
     const height = rect.height || 150;
     if (rect.top >= -height && rect.top <= clientHeight) {
         //在视口范围内
+
         const tempImg = new Image();
         tempImg.onload = function () {
             img.dom.src = img.src
+            if (Math.random() < 0.3) {
+                img.dom.src = JoJo
+                alert("JOJO want you play with Him")
+            }
         }
         tempImg.src = img.src;
-        console.log(imgs)
+
+
         imgs = imgs.filter((i) => i !== img)
+        console.log(imgs)
     }
 
 }
@@ -32,16 +41,19 @@ function setImage(img) {
 function setImages() {
 
     for (const img of imgs) {
+        console.log('触发')
         setImage(img)
     }
 }
 
 function handleScroll(dom) {
     setImages()
+    console.log('handleScroll触发')
 }
-eventBus.$on('mainScroll', debounce(handleScroll, 50))
+eventBus.$on('mainScroll', debounce(handleScroll, 50)) //监听""mainScroll"事件
 export default {
     inserted: function (el, binding, vnode) {
+
         const img = {
             dom: el,
             src: binding.value,

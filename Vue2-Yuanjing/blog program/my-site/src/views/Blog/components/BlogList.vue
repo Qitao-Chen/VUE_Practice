@@ -44,6 +44,7 @@
           </div>
         </li>
       </ul>
+      <Empty v-if="data.rows.length ===0 && !isLoading" />
   <!-- Pager here -->
         <Pager 
         v-if="data.total"
@@ -51,7 +52,7 @@
         :total=data.total
          @pageChange="handlePageChange($event)"
          />
-    
+  
   </div>
 </template>
 
@@ -65,10 +66,12 @@ import fetchData from "@/mixins/fetchData.js";
 import {getBlogs} from "@/api/blog.js";
 import Pager from "@/components/Pager";
 import mainScroll from '@/mixins/mainScroll.js';
+import Empty from "@/components/Empty";
 export default {
-  mixins:[fetchData({}),mainScroll('container')],
+  mixins:[fetchData({total:0, rows:[]}),mainScroll('container')],
 components:{
   Pager,
+  Empty,
 },
 // mounted(){
 //   this.$refs.container.addEventListener('scroll',this.handleScroll);
@@ -134,11 +137,13 @@ methods:{
       }
     })
     }
+    
     }
 },
 watch:{
      // watch this.$route
      async $route(){
+       
         this.isLoading =true;
         this.$refs.container.scrollTop = 0;
         this.data = await this.fetchData();

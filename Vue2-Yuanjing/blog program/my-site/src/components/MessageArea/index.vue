@@ -36,21 +36,14 @@ export default {
     DataForm,
     DataList,
   },
+  //如果不使用v-on="$listeners" 则需要使用以下方法往上抛
+  //  <DataFom @submit="handleSubmit" />
   // methods:{
   //   handleSubmit(formData,callback){
   //     //继续往上抛。让blogComment组件处理
   //     console.log("index")
   //     this.$emit("submit", formData,callback)
   //   }
-  //   method
-  //   @submit="handleSubmit"
-  //   handleSubmit(formData,callback){
-  //     console.log(formData.content);
-  //    setTimeout(() => {
-  //       callback();
-  //    }, 3000);
-  //   }
-  // }
 }
 </script>
 

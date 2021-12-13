@@ -3,7 +3,6 @@
         <div ref="mainContainer" class="main-container" v-loading="isLoading">
             <BlogDetail :blog="data"  v-if="data" />
             <BlogComment v-if="!isLoading"/>
-         
         </div>
         <template #right>
            <div class="right-container" v-loading="isLoading">
@@ -22,6 +21,7 @@ import BlogDetail from "./components/BlogDetail";
 import BlogTOC from "./components/BlogTOC";
 import BlogComment from "./components/BlogComment";
 import mainScroll from '@/mixins/mainScroll.js';
+import {titleController} from "@/utils";
 export default {
     mixins:[fetchData(null),mainScroll('mainContainer')],
     components:{
@@ -29,12 +29,18 @@ export default {
         BlogDetail,
         BlogTOC,
         BlogComment,
-    
     },
     methods:{
         async fetchData(){
-            console.log(this.$route.params)
-            return await getBlog(this.$route.params); 
+            let resp = await getBlog(this.$route.params); 
+            resp = null;
+            if(!resp){
+                //博客不存在时，跳转到404
+                this.$router.push("/404") 
+                return;
+            }
+            titleController.setRouteTitle(resp.title)
+            return resp;
         },
         // handlScroll(){
         //     //EventBus 实操

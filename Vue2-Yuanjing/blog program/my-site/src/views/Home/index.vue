@@ -32,20 +32,21 @@
       @click="switchTo(i)"
       ></li>
     </ul>
-    <div v-loading="isLoading"></div>
+    <div v-loading="loading"></div>
     <!-- <Loading v-if="isLoading" /> -->
   </div>
 </template>
 
 <script>
-import { getBanners } from "@/api/banner.js";
+// import { getBanners } from "@/api/banner.js";
 import Carouselitem from "./Carouselitem.vue";
 import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
-import fetchData from "@/mixins/fetchData.js";
+import { mapState } from 'vuex'
+// import fetchData from "@/mixins/fetchData.js";
 
 export default {
-  mixins:[fetchData([])],
+  // mixins:[fetchData([])],使用store替代mixins。因为图片不需要实时更新。
   components: {
     Carouselitem,
     Icon,
@@ -64,6 +65,9 @@ export default {
   //   this.data = await getdata();
   //   this.isLoading = false;
   // },
+ async created(){
+    await this.$store.dispatch("banner/getBannerData")
+  },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
     window.addEventListener("resize",this.handleResize);
@@ -72,6 +76,7 @@ export default {
     window.removeEventListener("resize",this.handleResize)
   },
   computed: {
+    ...mapState("banner",["loading","data"]),
     marginTop() {
       console.log(this.containerHeight);
       return -this.index * this.containerHeight + "px";
@@ -83,7 +88,6 @@ export default {
   },
   methods:{
     switchTo(i){
-    
       this.index = i;
         console.log("====",this.index)
     },
@@ -113,9 +117,9 @@ export default {
     handleResize(){
       this.containerHeight = this.$refs.container.clientHeight;
     },
-    async fetchData(){
-      return await getBanners();
-    },
+    // async fetchData(){
+    //   return await getBanners();
+    // },
   },
 //  watch:{
 //    index(){

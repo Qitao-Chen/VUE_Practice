@@ -1,0 +1,44 @@
+import {
+    getSetting
+} from "@/api/setting";
+import titleController from "@/utils/titleController";
+export default {
+    namespaced: true,
+    state: {
+        loading: false,
+        data: null,
+    },
+    mutations: {
+        setLoading(state, payload) {
+            state.loading = payload;
+        },
+        setData(state, payload) {
+            state.data = payload;
+        }
+    },
+    actions: {
+        async fetchSetting(context) {
+            context.commit('setLoading', true);
+            const resp = await getSetting();
+            context.commit('setData', resp);
+            context.commit('setLoading', false);
+
+            if (resp.favicon) {
+                //<link rel="shortcut icon" type="images/x-icon" href="/path/to/icons/favicon.ico">
+                let link = document.querySelector("link[rel='shortcut icon']");
+                if (link) {
+                    return;
+                } else {
+                    link = document.createElement('link');
+                    link.rel = "shortcut icon";
+                    link.type = "images/x-icon";
+                    link.href = resp.favicon;
+                    document.querySelector("head").appendChild(link);
+                }
+            }
+            if (resp.siteTitle) {
+                titleController.setSiteTitle(resp.siteTitle)
+            }
+        }
+    }
+}

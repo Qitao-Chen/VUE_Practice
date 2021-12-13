@@ -1,13 +1,15 @@
 <template>
   <div class="site-aside-container">
       <div class="avatar-container">
-        <Avatar url="https://avatars.githubusercontent.com/u/54574452?v=4"/>
-        <h1 class="title">Eric的GitBlog</h1>
+         <template v-if="data">
+        <Avatar :url="data.avatar"/>
+        <h1 class="title">{{data.siteTitle}}</h1>
+         </template>
       </div>
     <Menu />
-    <Contact />
-       <p class="footer">
-           沪ICP备17001719号
+    <Contact v-if="data"/>
+       <p v-if="data" class="footer">
+           {{data.icp}}
        </p>
   </div>
 </template>
@@ -16,11 +18,15 @@
 import Avatar from "@/components/Avatar";
 import Menu from "./Menu";
 import Contact from "./Contact";
+import {mapState} from "vuex";
 export default {
 components:{
     Avatar,
     Menu,
     Contact,
+},
+computed:{
+    ...mapState('setting',["data"]),
 }
 }
 </script>

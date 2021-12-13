@@ -12,6 +12,10 @@ from "./getComponentRootDom";
 export {
     default as debounce
 }
-from './debounce'
+from './debounce';
+export {
+    default as titleController
+}
+from './titleController';
 //import showMessage from "./showMessage"
 //export {showMessage}
